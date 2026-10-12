@@ -1,0 +1,13 @@
+#python stuff
+.venv/
+__pycache__/
+*.pyc
+
+#tools
+.ruff_cache/
+
+#secrets
+.env
+
+#macOS
+.DS_Store
