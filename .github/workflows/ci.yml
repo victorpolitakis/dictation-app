@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [main] # on push to main branch
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend 
+    steps:
+      - uses: actions/checkout@v5 # checkout code on linux machine 
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --locked # install deps from uv.lock, fail if it doesnt match pyproject.toml
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pytest
